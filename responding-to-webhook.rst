@@ -216,10 +216,17 @@ a pull request**.
 For this case, you'll want to subscribe to the ``pull_request`` event, specifically
 when the ``action`` to the event is ``opened``.
 
-For reference, the relevant GitHub API documentation for the ``pull_request`` event
-is here: https://developer.github.com/v3/activity/events/types/#pullrequestevent.
+Some useful documentations:
 
-The example payload for this event is here: https://developer.github.com/v3/activity/events/types/#webhook-payload-example-27
+- GitHub ``pull_request`` event documentation: https://developer.github.com/v3/activity/events/types/#pullrequestevent
+
+- GitHub pull request API documentation: https://developer.github.com/v3/pulls/
+  Note to comments on a pull request are managed using the Issues API. Meaning
+  you'll be use the same API as if `you're commenting on an issue
+  <https://developer.github.com/v3/issues/comments/>`_.
+
+
+The example payload for the pull request event is here: https://developer.github.com/v3/activity/events/types/#webhook-payload-example-27
 
 Try this on your own.
 
@@ -229,16 +236,17 @@ I'll give you a starting hint::
     async def pr_opened(event, gh, *args, **kwargs):
         ...
 
+
 How can you tell if the person is a new contributor, or an existing member of your
 organization? Perhaps you don't want this bot to be triggered if it is one
 of your co-maintainers.
 
-There are a few ways to do this.
-
 In the pull_request webhook event, one of the data that was passed is the ``author_association``
 field. It could be an ``OWNER``, ``MEMBER``, ``CONTRIBUTOR``, or ``None``,
 If the ``author_association`` field is empty, you can guess that they are a
-first time contributor.
+first time contributor. (access this data as ``event.data["pull_request"]["author_association"]``).
+
+See my `solution here <https://github.com/Mariatta/gh_app_starter/blob/thanks-for-pr/webservice/__main__.py#L76>`_.
 
 .. _react_to_comments:
 
