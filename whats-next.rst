@@ -50,6 +50,13 @@ You have a limit of 5000 API calls per hour using the OAuth token.
 The `Rate Limit API <https://developer.github.com/v3/rate_limit/>`_ docs have
 more info on this.
 
+Caching the Installation Access Token
+'''''''''''''''''''''''''''''''''''''
+
+When we receive an installation access token, it returns an expiry date. You can
+use the same installation access token until it becomes expired. You can think
+of ways to cache this token somehow, instead of requesting it each time we need it.
+
 Unit tests with pytest
 ''''''''''''''''''''''
 
