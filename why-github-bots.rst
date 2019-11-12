@@ -29,7 +29,7 @@ Example GitHub bots
 the-knight-who-says-ni
 ''''''''''''''''''''''
 
-Source code: https://githuba.com/python/the-knights-who-say-ni
+Source code: https://github.com/python/the-knights-who-say-ni
 
 Waits for incoming CPython's pull requests. Each time a pull request is opened,
 it does the following:
